@@ -18,10 +18,18 @@ from sklearn.metrics import (
 st.title("Heart Disease Prediction App")
 
 # -------------------------------------------------
-# a. Dataset Upload Option
+# a. Test Dataset download Option
 # -------------------------------------------------
 
 st.write("Download Sample Test Data")
+
+response = requests.get(sample_url)
+st.write.download_button(
+label="Click to Save File",
+ data=response.content,
+ file_name="heart_test_data.csv",
+ mime="text/csv"
+    )
 uploaded_file = st.file_uploader("Upload Test Dataset (CSV only)", type=["csv"])
 if uploaded_file is None:
     uploaded_file ="/mount/src/2025aa05140/model/heart_test_data.csv"
@@ -30,9 +38,6 @@ data = pd.read_csv(uploaded_file)
 
 st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
-#Test data download option
-
-
 
 sample_url = "https://github.com/2025aa05140/2025aa05140/blob/main/model/heart_test.csv?raw=true"
 
@@ -115,6 +120,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
