@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
+import requests
 
 from sklearn.metrics import (
     accuracy_score,
@@ -23,28 +24,44 @@ st.title("Bank Marketing Classification App")
 uploaded_file = st.file_uploader("Upload Test Dataset (CSV only)", type=["csv"])
 if uploaded_file is None:
     uploaded_file ="/mount/src/2025aa05140/model/bank_test_data.csv"
-if uploaded_file is not None:
 
-    data = pd.read_csv(uploaded_file)
+data = pd.read_csv(uploaded_file)
 
-    st.write("Uploaded Dataset Preview:")
-    st.dataframe(data.head())
+st.write("Uploaded Dataset Preview:")
+st.dataframe(data.head())
 
     # Target column must be included in test data
-    if 'y' in data.columns:
-        data['y'] = data['y'].map({'yes': 1, 'no': 0})
+if 'y' in data.columns:
+    data['y'] = data['y'].map({'yes': 1, 'no': 0})
 
-        X = data.drop('y', axis=1)
-        y_true = data['y']
-    else:
-        st.error("Dataset must contain target column 'y'")
-        st.stop()
+    X = data.drop('y', axis=1)
+    y_true = data['y']
+else:
+    st.error("Dataset must contain target column 'y'")
+    st.stop()
+    #----------------------------
 
+    #Test data download option
+
+st.sidebar.header("Download Sample Test Data")
+
+sample_url = "https://github.com/2025aa05140/2025aa05140/blob/main/model/bank_test_data.csv?raw=true"
+
+if st.sidebar.button("Download Sample Test Data"):
+    response = requests.get(sample_url)
+    st.sidebar.download_button(
+        label="Click to Save File",
+        data=response.content,
+        file_name="bank_test_data.csv",
+        mime="text/csv"
+    )
+
+    #--------------------
     # -------------------------------------------------
     # b. Model Selection Dropdown
     # -------------------------------------------------
 
-    model_option = st.selectbox(
+model_option = st.selectbox(
         "Select Model",
         (
             "Logistic Regression",
@@ -57,7 +74,7 @@ if uploaded_file is not None:
     )
 
     # Load selected model
-    model_paths = {
+model_paths = {
         "Logistic Regression": "bank_model_Logistic Regression.pkl",
         "Decision Tree": "bank_model_Decision Tree.pkl",
         "KNN": "bank_model_knn.pkl",
@@ -66,50 +83,49 @@ if uploaded_file is not None:
         "XGBoost": "bank_model_XGBoost (Ensemble).pkl"
     }
 
-    model = joblib.load(model_paths[model_option])
+model = joblib.load(model_paths[model_option])
 
     # Make predictions
-    y_pred = model.predict(X)
-    y_prob = model.predict_proba(X)[:, 1]
+y_pred = model.predict(X)
+y_prob = model.predict_proba(X)[:, 1]
 
     # -------------------------------------------------
     # c. Display Evaluation Metrics
     # -------------------------------------------------
 
-    accuracy = accuracy_score(y_true, y_pred)
-    precision = precision_score(y_true, y_pred)
-    recall = recall_score(y_true, y_pred)
-    f1 = f1_score(y_true, y_pred)
-    auc = roc_auc_score(y_true, y_prob)
-    mcc = matthews_corrcoef(y_true, y_pred)
+accuracy = accuracy_score(y_true, y_pred)
+precision = precision_score(y_true, y_pred)
+recall = recall_score(y_true, y_pred)
+f1 = f1_score(y_true, y_pred)
+auc = roc_auc_score(y_true, y_prob)
+mcc = matthews_corrcoef(y_true, y_pred)
 
-    st.subheader("Evaluation Metrics")
+st.subheader("Evaluation Metrics")
 
-    col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(3)
 
-    col1.metric("Accuracy", f"{accuracy:.4f}")
-    col1.metric("AUC Score", f"{auc:.4f}")
+col1.metric("Accuracy", f"{accuracy:.4f}")
+col1.metric("AUC Score", f"{auc:.4f}")
 
-    col2.metric("Precision", f"{precision:.4f}")
-    col2.metric("Recall", f"{recall:.4f}")
+col2.metric("Precision", f"{precision:.4f}")
+col2.metric("Recall", f"{recall:.4f}")
 
-    col3.metric("F1 Score", f"{f1:.4f}")
-    col3.metric("MCC Score", f"{mcc:.4f}")
+col3.metric("F1 Score", f"{f1:.4f}")
+col3.metric("MCC Score", f"{mcc:.4f}")
 
     # -------------------------------------------------
     # d. Confusion Matrix + Classification Report
     # -------------------------------------------------
 
-    st.subheader("Confusion Matrix")
+st.subheader("Confusion Matrix")
 
-    cm = confusion_matrix(y_true, y_pred)
-    st.write(cm)
+cm = confusion_matrix(y_true, y_pred)
+st.write(cm)
 
-    st.subheader("Classification Report")
-    report = classification_report(y_true, y_pred)
-    st.text(report)
+st.subheader("Classification Report")
+report = classification_report(y_true, y_pred)
+st.text(report)
 
-else:
-    st.info("Please upload test CSV file to proceed.")
+
 
 
