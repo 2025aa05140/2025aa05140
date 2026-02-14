@@ -60,12 +60,12 @@ model_option = st.selectbox(
 
     # Load selected model
 model_paths = {
-        "Logistic Regression": "/mount/src/2025aa05140/model/bank_model_Logistic Regression.pkl",
-        "Decision Tree": "/mount/src/2025aa05140/model/bank_model_Decision Tree.pkl",
-        "KNN": "/mount/src/2025aa05140/model/bank_model_knn.pkl",
-        "Naive Bayes": "/mount/src/2025aa05140/model/bank_model_Naive Bayes.pkl",
-        "Random Forest": "/mount/src/2025aa05140/model/bank_model_Random Forest (Ensemble).pkl",
-        "XGBoost": "/mount/src/2025aa05140/model/bank_model_XGBoost (Ensemble).pkl"
+        "Logistic Regression": "/mount/src/2025aa05140/model/cancer_model_Logistic Regression.pkl",
+        "Decision Tree": "/mount/src/2025aa05140/model/cancer_model_Decision Tree.pkl",
+        "KNN": "/mount/src/2025aa05140/model/cancer_model_KNN.pkl",
+        "Naive Bayes": "/mount/src/2025aa05140/model/cancer_model_Naive Bayes.pkl",
+        "Random Forest": "/mount/src/2025aa05140/model/cancer_model_Random Forest (Ensemble).pkl",
+        "XGBoost": "/mount/src/2025aa05140/model/cancer_model_XGBoost (Ensemble).pkl"
     }
 
 model = joblib.load(model_paths[model_option])
@@ -113,6 +113,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
