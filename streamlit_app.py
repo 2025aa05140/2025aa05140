@@ -30,16 +30,16 @@ data = pd.read_csv(uploaded_file)
 st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
 
-    # Target column must be included in test data
-#if 'y' in data.columns:
-#data['y'] = data['y'].map({'yes': 1, 'no': 0})
+# Target column must be included in test data
+if 'y' in data.columns:
 
-X = data.drop('y', axis=1)
-y_true = data['y']
-#else:
- #   st.error("Dataset must contain target column 'y'")
-    #st.stop()
-    #----------------------------
+    # If target is string, convert
+    if data['y'].dtype == 'object':
+        data['y'] = data['y'].map({'yes': 1, 'no': 0})
+
+    X = data.drop('y', axis=1)
+    y_true = data['y']
+#----------------------------
 
 #Test data download option
 
@@ -125,6 +125,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
