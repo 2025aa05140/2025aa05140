@@ -26,6 +26,7 @@ if uploaded_file is None:
     uploaded_file ="/mount/src/2025aa05140/model/bank_test_data.csv"
 
 data = pd.read_csv(uploaded_file)
+st.write(list(data.columns))
 
 st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
@@ -125,6 +126,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
