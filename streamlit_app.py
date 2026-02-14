@@ -117,12 +117,14 @@ col3.metric("MCC Score", f"{mcc:.4f}")
 st.subheader("Confusion Matrix")
 
 cm = confusion_matrix(y_true, y_pred,output_dict=True)
-st.dataframe(cm.round(4))
+report_df = pd.DataFrame(cm).transpose()
+st.dataframe(report.df.round(4))
 
 st.subheader("Classification Report")
 report_dict = classification_report(y_true, y_pred,output_dict=True)
 report_df = pd.DataFrame(report_dict).transpose()
 st.dataframe(report_df.round(4))
+
 
 
 
