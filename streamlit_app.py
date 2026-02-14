@@ -36,8 +36,8 @@ if '"y"' in data.columns:
   # If target is string, convert
   if data['"y"'].dtype == 'object':
       data['"y"'] = data['"y"'].map({'yes': 1, 'no': 0})
-        X = data.drop('"y"', axis=1)
-        y_true = data['"y"']
+      X = data.drop('"y"', axis=1)
+      y_true = data['"y"']
 #----------------------------
 
 #Test data download option
@@ -124,6 +124,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
