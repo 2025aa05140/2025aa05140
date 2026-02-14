@@ -41,7 +41,7 @@ if st.sidebar.button("Download Test Data"):
     st.sidebar.download_button(
         label="Click to Save File",
         data=response.content,
-        file_name="bank_test_data.csv",
+        file_name="heart_test_data.csv",
         mime="text/csv"
     )
 
@@ -114,6 +114,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
