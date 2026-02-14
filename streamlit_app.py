@@ -32,7 +32,7 @@ st.dataframe(data.head())
 
     # Target column must be included in test data
 #if 'y' in data.columns:
-data['y'] = data['y'].map({'yes': 1, 'no': 0})
+#data['y'] = data['y'].map({'yes': 1, 'no': 0})
 
 X = data.drop('y', axis=1)
 y_true = data['y']
@@ -125,5 +125,6 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
