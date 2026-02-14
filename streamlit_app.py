@@ -76,7 +76,7 @@ y_true = data['diagnosis'].map({'M': 1, 'B': 0})  # Convert target to binary
 loaded_object = joblib.load(model_paths[model_option])
 
 if isinstance(loaded_object, tuple):
-    model, preprocessor = loaded_object
+    preprocessor, model= loaded_object
     X_processed = preprocessor.transform(X)
 else:
     model = loaded_object
@@ -122,6 +122,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
