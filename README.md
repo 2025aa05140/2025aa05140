@@ -18,7 +18,8 @@ The objective of this project is to develop and evaluate multiple machine learni
 4.
 <img width="1112" height="281" alt="image" src="https://github.com/user-attachments/assets/253ab33a-895f-4852-8713-2e8deb54ade5" />
 
-<img width="2042" height="141" alt="image" src="https://github.com/user-attachments/assets/7390f337-be3b-415c-b21b-b8cece45ee37" />
+
+
 
 
 
