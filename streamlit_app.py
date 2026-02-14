@@ -20,13 +20,11 @@ st.title("Heart Disease Prediction App")
 # -------------------------------------------------
 # a. Dataset Upload Option
 # -------------------------------------------------
-
 uploaded_file = st.file_uploader("Upload Test Dataset (CSV only)", type=["csv"])
 if uploaded_file is None:
     uploaded_file ="/mount/src/2025aa05140/model/heart_test_data.csv"
 
 data = pd.read_csv(uploaded_file)
-st.write(list(data.columns))
 
 st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
@@ -115,6 +113,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
