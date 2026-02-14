@@ -20,6 +20,7 @@ st.title("Heart Disease Prediction App")
 # -------------------------------------------------
 # a. Test Dataset download Option
 # -------------------------------------------------
+sample_url = "https://github.com/2025aa05140/2025aa05140/blob/main/model/heart_test.csv?raw=true"
 
 st.write("Download Sample Test Data")
 
@@ -39,16 +40,6 @@ data = pd.read_csv(uploaded_file)
 st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
 
-sample_url = "https://github.com/2025aa05140/2025aa05140/blob/main/model/heart_test.csv?raw=true"
-
-if st.write("Download Sample Test Data"):
-    response = requests.get(sample_url)
-    st.write.download_button(
-        label="Click to Save File",
-        data=response.content,
-        file_name="heart_test_data.csv",
-        mime="text/csv"
-    )
 
     #--------------------
     # -------------------------------------------------
@@ -120,6 +111,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
