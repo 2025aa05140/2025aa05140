@@ -78,7 +78,7 @@ model_paths = {
         "Logistic Regression": "/mount/src/2025aa05140/model/bank_model_Logistic Regression.pkl",
         "Decision Tree": "/mount/src/2025aa05140/model/bank_model_Decision Tree.pkl",
         "KNN": "/mount/src/2025aa05140/model/bank_model_knn.pkl",
-        "Naive Bayes": "/mount/src/2025aa05140/model/bank_model_nb.pkl",
+        "Naive Bayes": "/mount/src/2025aa05140/model/bank_model_Naive Bayes.pkl",
         "Random Forest": "/mount/src/2025aa05140/model/bank_model_Random Forest (Ensemble).pkl",
         "XGBoost": "/mount/src/2025aa05140/model/bank_model_XGBoost (Ensemble).pkl"
     }
@@ -125,3 +125,4 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
