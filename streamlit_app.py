@@ -31,17 +31,17 @@ st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
 
     # Target column must be included in test data
-if 'y' in data.columns:
-    data['y'] = data['y'].map({'yes': 1, 'no': 0})
+#if 'y' in data.columns:
+data['y'] = data['y'].map({'yes': 1, 'no': 0})
 
-    X = data.drop('y', axis=1)
-    y_true = data['y']
-else:
-    st.error("Dataset must contain target column 'y'")
+X = data.drop('y', axis=1)
+y_true = data['y']
+#else:
+ #   st.error("Dataset must contain target column 'y'")
     #st.stop()
     #----------------------------
 
-    #Test data download option
+#Test data download option
 
 st.sidebar.header("Download Sample Test Data")
 
@@ -85,7 +85,7 @@ model_paths = {
 
 model = joblib.load(model_paths[model_option])
 
-    # Make predictions
+# Make predictions
 y_pred = model.predict(X)
 y_prob = model.predict_proba(X)[:, 1]
 
@@ -125,4 +125,5 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
