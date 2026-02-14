@@ -25,7 +25,7 @@ sample_url = "https://github.com/2025aa05140/2025aa05140/blob/main/model/heart_t
 st.write("Download Sample Test Data")
 
 response = requests.get(sample_url)
-st.write.download_button(
+st.download_button(
 label="Click to Save File",
  data=response.content,
  file_name="heart_test_data.csv",
@@ -111,6 +111,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
