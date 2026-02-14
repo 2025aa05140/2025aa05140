@@ -15,7 +15,7 @@ from sklearn.metrics import (
     classification_report
 )
 
-st.title("Bank Marketing Classification App")
+st.title("Heart Disease Prediction App")
 
 # -------------------------------------------------
 # a. Dataset Upload Option
@@ -30,20 +30,6 @@ st.write(list(data.columns))
 
 st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
-data.columns = data.columns.str.strip().str.lower()
-# Target column must be included in test data
-if 'y' in data.columns:
-  # If target is string, convert
-  if data['y'].dtype == 'object':
-      data['y'] = data['y'].map({'yes': 1, 'no': 0})
-      X = data.drop('y', axis=1)
-      y_true = data['y']
-else:
-    X = data.copy()
-    y_true = None
-    evaluate = False
-#----------------------------
-
 #Test data download option
 
 st.sidebar.header("Download Sample Test Data")
@@ -128,6 +114,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
