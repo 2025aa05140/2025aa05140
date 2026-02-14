@@ -73,9 +73,18 @@ X = data.drop('diagnosis', axis=1)
 X.fillna(X.mean(), inplace=True) 
 y_true = data['diagnosis'].map({'M': 1, 'B': 0})  # Convert target to binary
 
+loaded_object = joblib.load(model_paths[model_option])
+
+if isinstance(loaded_object, tuple):
+    model, preprocessor = loaded_object
+    X_processed = preprocessor.transform(X)
+else:
+    model = loaded_object
+    X_processed = X
+
 # Make predictions
-y_pred = model.predict(X)
-y_prob = model.predict_proba(X)[:, 1]
+y_pred = model.predict(X_processed)
+y_prob = model.predict_proba(X_processed)[:, 1]
 
     # -------------------------------------------------
     # c. Display Evaluation Metrics
@@ -113,6 +122,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
