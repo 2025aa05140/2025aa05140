@@ -26,17 +26,16 @@ if uploaded_file is None:
     uploaded_file ="/mount/src/2025aa05140/model/bank_test_data.csv"
 
 data = pd.read_csv(uploaded_file)
-X = data.drop('y', axis=1)
 
 st.write("Uploaded Dataset Preview:")
 st.dataframe(data.head())
 
 # Target column must be included in test data
-if 'y' in data.columns:
+#if 'y' in data.columns:
 
     # If target is string, convert
-    if data['y'].dtype == 'object':
-        data['y'] = data['y'].map({'yes': 1, 'no': 0})
+ #   if data['y'].dtype == 'object':
+  #      data['y'] = data['y'].map({'yes': 1, 'no': 0})
 
     X = data.drop('y', axis=1)
     y_true = data['y']
@@ -126,6 +125,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
