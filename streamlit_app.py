@@ -122,8 +122,8 @@ st.write(cm)
 st.subheader("Classification Report")
 report_dict = classification_report(y_true, y_pred,output_dict=True)
 report_df = pd.DataFrame(report_dict).transpose()
-report_df = report_df.round(4)
-st.text(report_df)
+st.dataframe(report_df.round(4))
+
 
 
 
