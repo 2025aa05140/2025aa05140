@@ -38,7 +38,7 @@ if 'y' in data.columns:
     y_true = data['y']
 else:
     st.error("Dataset must contain target column 'y'")
-    st.stop()
+    #st.stop()
     #----------------------------
 
     #Test data download option
@@ -125,7 +125,3 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
-
-
-
-
