@@ -15,7 +15,7 @@ from sklearn.metrics import (
     classification_report
 )
 
-st.title("Breast Camcer Prediction App")
+st.title("Breast Cancer Prediction App")
 
 # -------------------------------------------------
 # a. Test Dataset download Option
@@ -83,8 +83,8 @@ else:
     X_processed = X
 
 # Make predictions
-y_pred = preprocessor.predict(X_processed)
-y_prob = preprocessor.predict_proba(X_processed)[:, 1]
+y_pred = model.predict(X_processed)
+y_prob = model.predict_proba(X_processed)[:, 1]
 
     # -------------------------------------------------
     # c. Display Evaluation Metrics
@@ -122,6 +122,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
