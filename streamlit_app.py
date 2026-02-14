@@ -21,7 +21,8 @@ st.title("Bank Marketing Classification App")
 # -------------------------------------------------
 
 uploaded_file = st.file_uploader("Upload Test Dataset (CSV only)", type=["csv"])
-
+if uploaded_file is None:
+    uploaded_file ="./model/bank_test_data.csv"
 if uploaded_file is not None:
 
     data = pd.read_csv(uploaded_file)
@@ -57,12 +58,12 @@ if uploaded_file is not None:
 
     # Load selected model
     model_paths = {
-        "Logistic Regression": "bank_model_logistic.pkl",
-        "Decision Tree": "bank_model_dt.pkl",
+        "Logistic Regression": "bank_model_Logistic Regression.pkl",
+        "Decision Tree": "bank_model_Decision Tree.pkl",
         "KNN": "bank_model_knn.pkl",
         "Naive Bayes": "bank_model_nb.pkl",
-        "Random Forest": "bank_model_rf.pkl",
-        "XGBoost": "bank_model_xgb.pkl"
+        "Random Forest": "bank_model_Random Forest (Ensemble).pkl",
+        "XGBoost": "bank_model_XGBoost (Ensemble).pkl"
     }
 
     model = joblib.load(model_paths[model_option])
@@ -110,3 +111,4 @@ if uploaded_file is not None:
 
 else:
     st.info("Please upload test CSV file to proceed.")
+
