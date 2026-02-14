@@ -70,8 +70,9 @@ model_paths = {
 
 model = joblib.load(model_paths[model_option])
 X = data.drop('diagnosis', axis=1)
-y = data['diagnosis'].map({'M': 1, 'B': 0})  # Convert target to binary
 X.fillna(X.mean(), inplace=True) 
+y_true = data['diagnosis'].map({'M': 1, 'B': 0})  # Convert target to binary
+
 # Make predictions
 y_pred = model.predict(X)
 y_prob = model.predict_proba(X)[:, 1]
@@ -112,6 +113,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
