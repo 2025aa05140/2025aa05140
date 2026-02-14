@@ -73,8 +73,8 @@ model_paths = {
     }
 
 model = joblib.load(model_paths[model_option])
-X = data.drop('y', axis=1)
-y_true = data['y']
+X = data.drop('target', axis=1)
+y_true = data['target']
 # Make predictions
 y_pred = model.predict(X)
 y_prob = model.predict_proba(X)[:, 1]
@@ -115,6 +115,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
