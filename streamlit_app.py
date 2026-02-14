@@ -15,7 +15,7 @@ from sklearn.metrics import (
     classification_report
 )
 
-st.title("Heart Disease Prediction App")
+st.title("Breast Camcer Prediction App")
 
 # -------------------------------------------------
 # a. Test Dataset download Option
@@ -69,8 +69,9 @@ model_paths = {
     }
 
 model = joblib.load(model_paths[model_option])
-X = data.drop('target', axis=1)
-y_true = data['target']
+X = data.drop('diagnosis', axis=1)
+y = data['diagnosis'].map({'M': 1, 'B': 0})  # Convert target to binary
+X.fillna(X.mean(), inplace=True) 
 # Make predictions
 y_pred = model.predict(X)
 y_prob = model.predict_proba(X)[:, 1]
@@ -111,6 +112,7 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
+
 
 
 
