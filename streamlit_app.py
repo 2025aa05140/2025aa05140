@@ -38,7 +38,7 @@ if 'y' in data.columns:
     y_true = data['y']
 else:
     st.error("Dataset must contain target column 'y'")
-    #st.stop()
+    st.stop()
     #----------------------------
 
     #Test data download option
@@ -75,12 +75,12 @@ model_option = st.selectbox(
 
     # Load selected model
 model_paths = {
-        "Logistic Regression": "bank_model_Logistic Regression.pkl",
-        "Decision Tree": "bank_model_Decision Tree.pkl",
-        "KNN": "bank_model_knn.pkl",
-        "Naive Bayes": "bank_model_nb.pkl",
-        "Random Forest": "bank_model_Random Forest (Ensemble).pkl",
-        "XGBoost": "bank_model_XGBoost (Ensemble).pkl"
+        "Logistic Regression": "/mount/src/2025aa05140/model/bank_model_Logistic Regression.pkl",
+        "Decision Tree": "/mount/src/2025aa05140/model/bank_model_Decision Tree.pkl",
+        "KNN": "/mount/src/2025aa05140/model/bank_model_knn.pkl",
+        "Naive Bayes": "/mount/src/2025aa05140/model/bank_model_nb.pkl",
+        "Random Forest": "/mount/src/2025aa05140/model/bank_model_Random Forest (Ensemble).pkl",
+        "XGBoost": "/mount/src/2025aa05140/model/bank_model_XGBoost (Ensemble).pkl"
     }
 
 model = joblib.load(model_paths[model_option])
@@ -125,7 +125,6 @@ st.write(cm)
 st.subheader("Classification Report")
 report = classification_report(y_true, y_pred)
 st.text(report)
-
 
 
 
