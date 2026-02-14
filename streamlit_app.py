@@ -22,7 +22,7 @@ st.title("Bank Marketing Classification App")
 
 uploaded_file = st.file_uploader("Upload Test Dataset (CSV only)", type=["csv"])
 if uploaded_file is None:
-    uploaded_file ="./model/bank_test_data.csv"
+    uploaded_file ="/mount/src/2025aa05140/model/bank_test_data.csv"
 if uploaded_file is not None:
 
     data = pd.read_csv(uploaded_file)
@@ -111,4 +111,5 @@ if uploaded_file is not None:
 
 else:
     st.info("Please upload test CSV file to proceed.")
+
 
