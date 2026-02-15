@@ -3,7 +3,7 @@ The objective of this project is to develop and evaluate multiple machine learni
   Malignant (Cancerous)
   Benign (Non-cancerous)
 
-2. **DataSet  Description**
+2. **DataSet  Description**  
       Name : Breast cancer Wisconsin
       Number of Instances: 569  
       Number of Features: 30 numerical features  
@@ -18,6 +18,7 @@ The objective of this project is to develop and evaluate multiple machine learni
 
 5. **Observation**
 <img width="1112" height="281" alt="image" src="https://github.com/user-attachments/assets/253ab33a-895f-4852-8713-2e8deb54ade5" />
+
 
 
 
